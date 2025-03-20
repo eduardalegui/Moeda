@@ -3,10 +3,12 @@ const apiKey = "37a26a6057489965c5ad1d60";
 
 window.onload = async function () {
     let data = await fetch("https://v6.exchangerate-api.com/v6/37a26a6057489965c5ad1d60/latest/USD");
+    
     if(!data.ok){
         return
     }
     let jsonData = await data.json();
+    
     let keys = Object.keys(jsonData.conversion_rates);
 
     var select = document.getElementById("selectFrom");
@@ -25,8 +27,6 @@ window.onload = async function () {
         console.log(key);  
     });
     
-        
-    
 }
 
 async function convert(){
@@ -38,35 +38,26 @@ async function convert(){
     
     let data = await fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/pair/${moeda1}/${moeda2}`);
 
-    console.log("data")
+    
     let jsonData = await data.json();
 
-    console.log(jsonData);
     document.getElementById("input2").value = (jsonData.conversion_rate * input1).toFixed(2);
-
-
 }
 
 
 
 
-async function getRates() {
+function reverse(){
+    let moeda1 = document.getElementById("selectFrom").value;
+    let moeda2 = document.getElementById("selectFrom2").value;
+    document.getElementById("selectFrom2").value = moeda1;
+    document.getElementById("selectFrom").value = moeda2;
 
-    let data = await fetch("https://v6.exchangerate-api.com/v6/37a26a6057489965c5ad1d60/latest/USD");
-        if(!data.ok){
-            return
-        }
-    let jsonData = await data.json();
-    console.log(jsonData);
+    document.getElementById("input").value = 1;
+    convert()
+    
 
-    let keys = Object.keys(jsonData.conversion_rates);
-
-    console.log("-----------------");
-    console.log("conversion_rates.keys:", keys);
-    console.log("Taxa para EUR:", jsonData.conversion_rates.EUR);
-    console.log("Taxa para BRL:", jsonData.conversion_rates.BRL);
-
-
+}
     /*
     var select = document.getElementById("selectFrom");
     for (key in keys){
@@ -91,7 +82,7 @@ async function getRates() {
     //         todos.add(option)
     //     });
     // });
-}
+
         
         
         

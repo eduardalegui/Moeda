@@ -1,7 +1,17 @@
+*{margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
 header{
     background-color: rgb(135, 135, 135);
 }
 
 section{
     background-color: rgb(139, 155, 150);
+}
+
+#a{
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
 }
